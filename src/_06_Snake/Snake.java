@@ -10,6 +10,8 @@ public class Snake {
 
 	private SnakeSegment head;
 	private ArrayList<SnakeSegment> snake;
+	
+	private Location loc;
 
 	private Direction currentDirection;
 
@@ -18,6 +20,7 @@ public class Snake {
 	public Snake(Location location) {
 		snake = new ArrayList<SnakeSegment>();
 		head = new SnakeSegment(location, BODY_SIZE);
+		this.loc = location;
 		snake.add(head);
 
 		currentDirection = Direction.RIGHT;
@@ -36,11 +39,30 @@ public class Snake {
 	public void update() {
 		//1. use a switch statement to check on the currentDirection
 		//   of the snake and calculate its next x and y position.
+		Location newLocation = loc;
+		switch(currentDirection) {
+			case RIGHT:{
+				newLocation.x = loc.x + 1;
+			}
+			case LEFT:{
+				newLocation.x = loc.x - 1;
+			}
+			case UP:{
+				newLocation.y = loc.y - 1;
+			}
+			case DOWN:{
+				newLocation.y = loc.y + 1;
+			}
+		}
 		
 
 		//2. Iterate through the SnakeSegments in reverse order
 		//2a. Update each snake segment to the location of the segment 
 		//    in front of it.
+		for (int i = snake.size() - 1; i >= 0; i--) {
+			Location prevLoc = snake.get(i - 1).getLocation();
+			snake.get(i).setLocation(prevLoc);
+		}
 		
 		
 		//3. set the location of the head to the new location calculated in step 1
