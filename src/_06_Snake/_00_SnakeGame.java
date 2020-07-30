@@ -89,13 +89,13 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		//   of the game. The smaller the number, the faster it goes.
 		switch(choice) {
 			case "Expert":{
-				timer.setDelay(1000);
+				timer.setDelay(250);
 			}
 			case "Moderate":{
-				timer.setDelay(2500);
+				timer.setDelay(500);
 			}
 			case "Beginner":{
-				timer.setDelay(5000);
+				timer.setDelay(1000);
 			}
 		}
 
@@ -117,6 +117,7 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		//1. Use a switch statement on e.getKeyCode()
 		//   to determine which key was pressed.
+		System.out.println("keypressed");
 		switch(e.getKeyCode()) {
 			case(KeyEvent.VK_UP):{
 				snake.setDirection(Direction.UP);
@@ -178,6 +179,7 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println("actionperformed");
 		//1. update the snake
 		snake.update();
 		//2. if the snake is colliding with its own body 
